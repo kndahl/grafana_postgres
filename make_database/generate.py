@@ -15,6 +15,9 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
+# TODO
+# Add Strateges in df (CV_UCL, CV_CC, SM9, SM10)
+
 class Response:
     
     status = []
@@ -22,15 +25,19 @@ class Response:
     finish = []
     duaration = []
 
+    # Choose random status code
     def get_status():
         return rand.choice([200, 400, 500])
 
+    # Get current time
     def get_start():
         return dt.datetime.now()
 
+    # Get finish time (current time + random choice 200-500 milisec)
     def get_finish():
         return dt.datetime.now() + dt.timedelta(microseconds=rand.choice([200, 300, 400, 500]))
 
+    # Generate 10000 inserts
     for n in range(10000):
         status.append(get_status())
         start.append(get_start())
