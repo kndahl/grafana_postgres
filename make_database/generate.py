@@ -2,6 +2,18 @@ import pandas as pd
 import random as rand
 import datetime as dt
 from sqlalchemy import create_engine
+from sqlalchemy.sql.selectable import Exists
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 class Response:
     
@@ -35,5 +47,10 @@ df.to_csv("responses.csv", index = False)
 print(df)
 
 # Fill DB
-engine = create_engine('postgresql://admin:admin@localhost:5432/postgres')
-df.to_sql('responses', engine, if_exists='replace')
+try:
+    engine = create_engine('postgresql://admin:admin@localhost:5432/postgres')
+    print(f"{bcolors.OKGREEN}Succesfully connected with DB.{bcolors.ENDC}")
+    df.to_sql('responses', engine, if_exists='replace')
+    print(f"{bcolors.OKGREEN}Succesfully load data in DB.{bcolors.ENDC}")
+except Exception:
+    print(f"{bcolors.FAIL}Cannot connect with DB!{bcolors.ENDC}")
