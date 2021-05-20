@@ -1,0 +1,13 @@
+apiVersion: 1
+datasources:
+  - name: Postgres
+    type: postgres
+    access: proxy
+    database: postgres
+    user: admin
+    password: admin
+    url: docker.for.mac.localhost
+    isDefault: true
+    editable: true
+    jsonData:
+      sslmode: "disable"

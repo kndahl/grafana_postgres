@@ -1,0 +1,183 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "panels": [{
+    "type": "piechart",
+    "title": "Status Bar 1",
+    "gridPos": {
+      "x": 0,
+      "y": 0,
+      "w": 12,
+      "h": 9
+    },
+    "id": 23763571993,
+    "targets": [
+      {
+        "refId": "A",
+        "format": "table",
+        "timeColumn": "time",
+        "metricColumn": "none",
+        "group": [],
+        "where": [
+          {
+            "type": "macro",
+            "name": "$__timeFilter",
+            "params": []
+          }
+        ],
+        "select": [
+          [
+            {
+              "type": "column",
+              "params": [
+                "value"
+              ]
+            }
+          ]
+        ],
+        "rawQuery": true,
+        "rawSql": "\tSELECT count(\"Status\") as \"Status 200\"\n\tFROM public.responses\n\twhere \"Status\"=200\n\tGroup by \"Status\""
+      },
+      {
+        "refId": "B",
+        "hide": false,
+        "format": "table",
+        "timeColumn": "time",
+        "metricColumn": "none",
+        "group": [],
+        "where": [
+          {
+            "type": "macro",
+            "name": "$__timeFilter",
+            "params": []
+          }
+        ],
+        "select": [
+          [
+            {
+              "type": "column",
+              "params": [
+                "value"
+              ]
+            }
+          ]
+        ],
+        "rawQuery": true,
+        "rawSql": "\tSELECT count(\"Status\") as \"Status 400\"\n\tFROM public.responses\n\twhere \"Status\"=400\n\tGroup by \"Status\"\n"
+      },
+      {
+        "refId": "C",
+        "hide": false,
+        "format": "table",
+        "timeColumn": "time",
+        "metricColumn": "none",
+        "group": [],
+        "where": [
+          {
+            "type": "macro",
+            "name": "$__timeFilter",
+            "params": []
+          }
+        ],
+        "select": [
+          [
+            {
+              "type": "column",
+              "params": [
+                "value"
+              ]
+            }
+          ]
+        ],
+        "rawQuery": true,
+        "rawSql": "\tSELECT count(\"Status\") as \"Status 500\"\n\tFROM public.responses\n\twhere \"Status\"=500\n\tGroup by \"Status\"\n"
+      }
+    ],
+    "fieldConfig": {
+      "defaults": {
+        "color": {
+          "mode": "palette-classic"
+        },
+        "thresholds": {
+          "mode": "absolute",
+          "steps": [
+            {
+              "value": null,
+              "color": "green"
+            },
+            {
+              "value": 80,
+              "color": "red"
+            }
+          ]
+        },
+        "mappings": [],
+        "unit": "short"
+      },
+      "overrides": []
+    },
+    "pluginVersion": "7.5.7",
+    "timeFrom": null,
+    "timeShift": null,
+    "maxDataPoints": null,
+    "options": {
+      "reduceOptions": {
+        "values": true,
+        "calcs": [
+          "sum"
+        ],
+        "fields": "/.*/"
+      },
+      "text": {},
+      "pieType": "pie",
+      "displayLabels": [
+        "name",
+        "value",
+        "percent"
+      ],
+      "legend": {
+        "displayMode": "hidden",
+        "placement": "right",
+        "values": []
+      }
+    },
+    "transformations": [
+      {
+        "id": "concatenate",
+        "options": {}
+      }
+    ],
+    "datasource": null
+  }],
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Status Bar 1",
+  "uid": "GjqowI3Gk",
+  "version": 2
+}
