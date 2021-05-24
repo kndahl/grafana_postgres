@@ -3,6 +3,7 @@ import random as rand
 import datetime as dt
 from sqlalchemy import create_engine
 from sqlalchemy.sql.selectable import Exists
+import time
 
 class bcolors:
     HEADER = '\033[95m'
@@ -34,20 +35,21 @@ class Response:
         return rand.choice(["CV_UCL", "CV_CC", "SM9", "SM10"])
 
     # Get current time
-    def get_start():
-        return dt.datetime.now()
+    def get_start(finish):
+         return finish + dt.timedelta(seconds=60)
 
     # Get finish time (current time + random choice 200-500 milisec)
-    def get_finish():
-        return dt.datetime.now() + dt.timedelta(microseconds=rand.choice([200, 300, 400, 500]))
+    def get_finish(start):
+        return start + dt.timedelta(microseconds=rand.choice([200, 300, 400, 500]))
 
-    # Generate 1000000 inserts
-    for n in range(1000000):
+    # Generate 100 inserts
+    for n in range(100):
+        print(n)
         status.append(get_status())
         strategy.append(get_strategy())
-        start.append(get_start())
-        finish.append(get_finish())
-        duaration.append(finish[n] - start[n])
+        start.append(get_start(start[n - 1] if n > 0 else dt.datetime.now()))
+        finish.append(get_finish(start[n]))
+        duaration.append((finish[n] - start[n]).microseconds)
 
 data = {"Status": Response.status,
         "Strategy": Response.strategy,

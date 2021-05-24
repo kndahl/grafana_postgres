@@ -48,7 +48,7 @@ services:
     environment:
       - GF_SECURITY_ADMIN_USER=${GRAFANA_USERNAME}
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
-      - GF_INSTALL_PLUGINS=vonage-status-panel, flant-statusmap-panel, petrslavotinek-carpetplot-panel, yesoreyeram-boomtable-panel
+      #- GF_INSTALL_PLUGINS=vonage-status-panel, flant-statusmap-panel, petrslavotinek-carpetplot-panel, yesoreyeram-boomtable-panel
     links:
      - postgres
     restart: unless-stopped
