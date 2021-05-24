@@ -21,6 +21,7 @@ class bcolors:
 class Response:
     
     status = []
+    strategy = []
     start = []
     finish = []
     duaration = []
@@ -28,6 +29,9 @@ class Response:
     # Choose random status code
     def get_status():
         return rand.choice([200, 400, 500])
+
+    def get_strategy():
+        return rand.choice(["CV_UCL", "CV_CC", "SM9", "SM10"])
 
     # Get current time
     def get_start():
@@ -37,14 +41,16 @@ class Response:
     def get_finish():
         return dt.datetime.now() + dt.timedelta(microseconds=rand.choice([200, 300, 400, 500]))
 
-    # Generate 10000 inserts
-    for n in range(10000):
+    # Generate 1000000 inserts
+    for n in range(1000000):
         status.append(get_status())
+        strategy.append(get_strategy())
         start.append(get_start())
         finish.append(get_finish())
         duaration.append(finish[n] - start[n])
 
-data = {"Status": Response.status, 
+data = {"Status": Response.status,
+        "Strategy": Response.strategy,
         "Start": Response.start, 
         "Finish": Response.finish,
         "Duration": Response.duaration}
