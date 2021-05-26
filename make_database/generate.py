@@ -44,7 +44,6 @@ class Response:
 
     # Generate 100 inserts
     for n in range(100):
-        print(n)
         status.append(get_status())
         strategy.append(get_strategy())
         start.append(get_start(start[n - 1] if n > 0 else dt.datetime.now()))
