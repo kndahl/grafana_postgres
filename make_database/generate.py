@@ -23,9 +23,11 @@ class Response:
     
     status = []
     strategy = []
+    source = []
+    product = []
     start = []
     finish = []
-    duaration = []
+    duration = []
 
     # Choose random status code
     def get_status():
@@ -34,27 +36,37 @@ class Response:
     def get_strategy():
         return rand.choice(["CV_UCL", "CV_CC", "SM9", "SM10"])
 
+    def get_sourcedata():
+        return rand.choice(["UV", "Transact"])
+
+    def get_product():
+        return rand.choice(["ConsumerCredit", "CreditCard", "Mortgage"])
+
     # Get current time
     def get_start(finish):
-         return finish + dt.timedelta(seconds=60)
+         return finish + dt.timedelta(seconds=10)
 
     # Get finish time (current time + random choice 200-500 milisec)
     def get_finish(start):
         return start + dt.timedelta(microseconds=rand.choice([200, 300, 400, 500]))
 
-    # Generate 100 inserts
-    for n in range(100):
+    # Generate 1000 inserts
+    for n in range(1000):
         status.append(get_status())
         strategy.append(get_strategy())
+        source.append(get_sourcedata())
+        product.append(get_product())
         start.append(get_start(start[n - 1] if n > 0 else dt.datetime.now()))
         finish.append(get_finish(start[n]))
-        duaration.append((finish[n] - start[n]).microseconds)
+        duration.append((finish[n] - start[n]).microseconds)
 
 data = {"Status": Response.status,
         "Strategy": Response.strategy,
+        "Source": Response.source,
+        "Product": Response.product,
         "Start": Response.start, 
         "Finish": Response.finish,
-        "Duration": Response.duaration}
+        "Duration": Response.duration}
         
 df = pd.DataFrame(data = data)
 df.to_csv("responses.csv", index = False)

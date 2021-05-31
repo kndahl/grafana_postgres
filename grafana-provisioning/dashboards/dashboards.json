@@ -19,10 +19,23 @@
   "panels": [
     {
       "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 30,
+      "title": "Row title",
+      "type": "row"
+    },
+    {
+      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "thresholds"
+            "fixedColor": "semi-dark-green",
+            "mode": "fixed"
           },
           "mappings": [],
           "thresholds": {
@@ -45,13 +58,13 @@
         "h": 7,
         "w": 3,
         "x": 0,
-        "y": 0
+        "y": 1
       },
       "id": 22,
       "options": {
         "colorMode": "background",
         "graphMode": "none",
-        "justifyMode": "auto",
+        "justifyMode": "center",
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
@@ -130,6 +143,7 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "200",
+      "transformations": [],
       "type": "stat"
     },
     {
@@ -161,7 +175,7 @@
         "h": 7,
         "w": 3,
         "x": 3,
-        "y": 0
+        "y": 1
       },
       "id": 27,
       "options": {
@@ -277,7 +291,7 @@
         "h": 7,
         "w": 3,
         "x": 6,
-        "y": 0
+        "y": 1
       },
       "id": 28,
       "options": {
@@ -316,7 +330,7 @@
           ],
           "metricColumn": "none",
           "rawQuery": true,
-          "rawSql": "select count(\"Status\") as \"Ошибка програмы\"\nfrom responses\nwhere \"Status\"=500",
+          "rawSql": "select count(\"Status\") as \"Ошибка программы\"\nfrom responses\nwhere \"Status\"=500",
           "refId": "A",
           "select": [
             [
@@ -371,7 +385,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 8
       },
       "id": 8,
       "panels": [],
@@ -407,7 +421,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 9
       },
       "id": 2,
       "options": {
@@ -487,7 +501,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 8
+        "y": 9
       },
       "id": 6,
       "options": {
@@ -610,11 +624,11 @@
       "color": {
         "cardColor": "#b4ff00",
         "colorScale": "sqrt",
-        "colorScheme": "interpolateGnYlRd",
+        "colorScheme": "interpolateRdYlGn",
         "defaultColor": "#757575",
         "exponent": 0.5,
-        "max": 200,
-        "min": 500,
+        "max": 400,
+        "min": 200,
         "mode": "spectrum",
         "thresholds": []
       },
@@ -627,13 +641,15 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 17
+        "y": 18
       },
       "highlightCards": true,
       "id": 10,
+      "interval": null,
       "legend": {
         "show": true
       },
+      "maxDataPoints": null,
       "nullPointMode": "as empty",
       "pageSize": 15,
       "pluginVersion": "7.5.7",
@@ -661,7 +677,7 @@
           ],
           "metricColumn": "\"Strategy\"",
           "rawQuery": true,
-          "rawSql": "SELECT\n  $__timeGroupAlias(\"Start\",$__interval),\n  \"Strategy\" AS metric,\n  avg(\"Status\") AS \"Status\"\nFROM responses\nGROUP BY 1,2\nORDER BY 1,2",
+          "rawSql": "SELECT\n  $__timeGroupAlias(\"Start\",80s),\n  \"Strategy\" AS metric,\n  min(\"Status\") AS \"Status\"\nFROM responses\nGROUP BY 1,2\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
@@ -673,7 +689,7 @@
               },
               {
                 "params": [
-                  "avg"
+                  "min"
                 ],
                 "type": "aggregate"
               },
@@ -772,7 +788,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 17
+        "y": 18
       },
       "id": 20,
       "options": {
@@ -884,7 +900,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 25
+        "y": 26
       },
       "id": 14,
       "options": {
@@ -1080,7 +1096,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 25
+        "y": 26
       },
       "id": 17,
       "options": {
@@ -1258,7 +1274,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 33
+        "y": 34
       },
       "id": 16,
       "options": {
@@ -1416,7 +1432,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 33
+        "y": 34
       },
       "id": 18,
       "options": {
@@ -1532,12 +1548,12 @@
     "list": []
   },
   "time": {
-    "from": "2021-05-24T16:33:30.135Z",
-    "to": "2021-05-24T18:09:45.593Z"
+    "from": "2021-05-31T13:31:56.803Z",
+    "to": "2021-05-31T16:21:47.644Z"
   },
   "timepicker": {},
   "timezone": "utc",
   "title": "Mix Dashboards",
   "uid": "7o2-RdqGz",
-  "version": 1
+  "version": 3
 }
